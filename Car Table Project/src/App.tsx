@@ -51,7 +51,6 @@ class App extends React.Component<any, any> {
       this.originalCars = this.state.cars;
     });
 
-<<<<<<< HEAD
     // Making a localhost call to a local Web API to test functionality
     // of the axios library for Web API calls in React.
     axios.get(`https://localhost:5001/api/dealerships`)
@@ -74,7 +73,7 @@ class App extends React.Component<any, any> {
           return;
         })
       });
-=======
+
     console.log("ComponentDidMount() was called.");
   }
 
@@ -92,7 +91,6 @@ class App extends React.Component<any, any> {
     else if (clickedHeader === "Year") {
       this.setState({cars: this._dataOrderService.orderByYear(this.originalCars)});
     }
->>>>>>> c8424b605dc808ac6a2a237fc6fe4c4c86c66600
   }
 
   render() {
