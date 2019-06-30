@@ -46,8 +46,8 @@ class App extends React.Component<any, any> {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>Car Table</h1>
-          <Bootstrap.Button onClick={this.changeColumnOrder} className="columnButton btn-danger">Change Column Order</Bootstrap.Button>
+          <h1>Car Table Project</h1>
+          <Bootstrap.Button onClick={this.changeColumnOrder} className="columnButton btn-danger">Change Ordering</Bootstrap.Button>
           <CarTable cars={this.state.cars} order={this.state.ordering}></CarTable>
         </header>
       </div>
