@@ -4,10 +4,22 @@ import './CarTable.css';
 
 export default class CarTable extends React.Component<any, any> {
 
+    constructor(props: any) {
+        super(props);
+    }
+
     componentDidMount() {
+
+        this.setState({
+            order: this.props.order,
+            cars: this.props.cars
+
+        });
+        
         console.log("order");
         console.log(this.props.order);
     }
+
 
     render() {
         return(
@@ -16,7 +28,7 @@ export default class CarTable extends React.Component<any, any> {
                     <thead>
                         <tr>
                         {this.props.order.map((column: string, key: any) => {
-                            return(<th key={key}>{column}</th>);
+                            return(<th key={key} onClick={e => this.orderByHeader(e)}>{column}</th>);
                             
                         })}
                         </tr>
@@ -35,5 +47,11 @@ export default class CarTable extends React.Component<any, any> {
                 </table>
             </div>
         )
+    }
+
+    orderByHeader = (e: any) => {
+        var clicked = e.target.textContent;
+        console.log("Inside orderByHeader function");
+        console.log(clicked);
     }
 }
