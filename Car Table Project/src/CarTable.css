@@ -1,0 +1,11 @@
+  th {
+    width: fixed;
+  }
+
+ .table.custom {
+    color: white;
+  }
+
+  .table th, .table td {
+    width: 33.33%;
+  }
