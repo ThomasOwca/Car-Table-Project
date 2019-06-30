@@ -11,7 +11,7 @@
   }
 
   .table.custom.table-bordered.table-hover tbody tr:hover {
-    color: #dc3545;
+    color: goldenrod;
   }
 
   .table.custom.table-bordered.table-hover thead tr th {
@@ -19,15 +19,14 @@
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
-    background-color: black;
+    background-color: #1d2026;
   }
 
   .table.custom.table-bordered.table-hover thead tr th:hover {
     color: white;
-    background-color: #dc3545;
+    background-color: #121417;
   }
 
   .table.custom.table-bordered.table-hover thead tr th:active {
-    color: black;
-    background-color: #dc3545;
+    color: gray;
   }

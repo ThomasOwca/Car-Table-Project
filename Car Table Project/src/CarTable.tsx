@@ -3,24 +3,6 @@ import './App.css';
 import './CarTable.css';
 
 export default class CarTable extends React.Component<any, any> {
-
-    constructor(props: any) {
-        super(props);
-
-        this.setState({
-            order: this.props.order,
-            cars: this.props.cars
-        });
-    }
-
-    componentDidMount() {
-        
-        
-        console.log("order");
-        console.log(this.props.order);
-    }
-
-
     render() {
         return(
             <div className="col-8">

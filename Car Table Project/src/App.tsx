@@ -3,14 +3,21 @@ import './App.css';
 import { Car } from './Models/Car';
 import CarTable from './CarTable';
 import * as Bootstrap from 'react-bootstrap';
+import DataOrdering from './Services/DataOrdering';
 
 class App extends React.Component<any, any> {
+  private _dataOrderService: DataOrdering;
+  private originalCars: Car [];
 
   constructor(props: any) {
     super(props);
+
+    this._dataOrderService = new DataOrdering();
+    this.originalCars = [];
     
     this.state = {
       cars: [],
+      originalCars: [],
       ordering: []
     }
 
@@ -39,7 +46,27 @@ class App extends React.Component<any, any> {
     this.setState({
       cars: cars,
       ordering: order[2]
+    }, () => {
+      this.originalCars = this.state.cars;
     });
+
+    console.log("ComponentDidMount() was called.");
+  }
+
+  // Event handler for clicking on a table column header.
+  // Orders records by that particular column.
+  orderByHeader(e: any) {
+    var clickedHeader = e.target.textContent;
+
+    if (clickedHeader === "Make") {
+      this.setState({cars: this._dataOrderService.orderByMake(this.originalCars)});
+    }
+    else if (clickedHeader === "Model") {
+      this.setState({cars: this._dataOrderService.orderByModel(this.originalCars)});
+    }
+    else if (clickedHeader === "Year") {
+      this.setState({cars: this._dataOrderService.orderByYear(this.originalCars)});
+    }
   }
 
   render() {
@@ -48,7 +75,7 @@ class App extends React.Component<any, any> {
         <header className="App-header">
           <h1>Car Table Project</h1>
           <Bootstrap.Button onClick={this.changeColumnOrder} className="columnButton btn-danger">Change Ordering</Bootstrap.Button>
-          <CarTable cars={this.state.cars} order={this.state.ordering}></CarTable>
+          <CarTable cars={this.state.cars} order={this.state.ordering} onClick={(e: any) => this.orderByHeader(e)}></CarTable>
         </header>
       </div>
     );
