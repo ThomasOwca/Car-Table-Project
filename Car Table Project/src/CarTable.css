@@ -2,10 +2,32 @@
     width: fixed;
   }
 
- .table.custom {
+ .table.custom.table-bordered{
     color: white;
   }
 
   .table th, .table td {
     width: 33.33%;
+  }
+
+  .table.custom.table-bordered.table-hover tbody tr:hover {
+    color: #dc3545;
+  }
+
+  .table.custom.table-bordered.table-hover thead tr th {
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+    background-color: black;
+  }
+
+  .table.custom.table-bordered.table-hover thead tr th:hover {
+    color: white;
+    background-color: #dc3545;
+  }
+
+  .table.custom.table-bordered.table-hover thead tr th:active {
+    color: black;
+    background-color: #dc3545;
   }
