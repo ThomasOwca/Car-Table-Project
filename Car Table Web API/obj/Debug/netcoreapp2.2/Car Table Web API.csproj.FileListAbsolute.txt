@@ -1,0 +1,14 @@
+/home/mistertams/Desktop/Car-Table-Project/Car Table Web API/bin/Debug/netcoreapp2.2/Car Table Web API.deps.json
+/home/mistertams/Desktop/Car-Table-Project/Car Table Web API/bin/Debug/netcoreapp2.2/Car Table Web API.runtimeconfig.json
+/home/mistertams/Desktop/Car-Table-Project/Car Table Web API/bin/Debug/netcoreapp2.2/Car Table Web API.runtimeconfig.dev.json
+/home/mistertams/Desktop/Car-Table-Project/Car Table Web API/bin/Debug/netcoreapp2.2/Car Table Web API.dll
+/home/mistertams/Desktop/Car-Table-Project/Car Table Web API/bin/Debug/netcoreapp2.2/Car Table Web API.pdb
+/home/mistertams/Desktop/Car-Table-Project/Car Table Web API/obj/Debug/netcoreapp2.2/Car Table Web API.csprojAssemblyReference.cache
+/home/mistertams/Desktop/Car-Table-Project/Car Table Web API/obj/Debug/netcoreapp2.2/Car Table Web API.csproj.CoreCompileInputs.cache
+/home/mistertams/Desktop/Car-Table-Project/Car Table Web API/obj/Debug/netcoreapp2.2/Car Table Web API.RazorAssemblyInfo.cache
+/home/mistertams/Desktop/Car-Table-Project/Car Table Web API/obj/Debug/netcoreapp2.2/Car Table Web API.RazorAssemblyInfo.cs
+/home/mistertams/Desktop/Car-Table-Project/Car Table Web API/obj/Debug/netcoreapp2.2/Car Table Web API.AssemblyInfoInputs.cache
+/home/mistertams/Desktop/Car-Table-Project/Car Table Web API/obj/Debug/netcoreapp2.2/Car Table Web API.AssemblyInfo.cs
+/home/mistertams/Desktop/Car-Table-Project/Car Table Web API/obj/Debug/netcoreapp2.2/Car Table Web API.RazorTargetAssemblyInfo.cache
+/home/mistertams/Desktop/Car-Table-Project/Car Table Web API/obj/Debug/netcoreapp2.2/Car Table Web API.dll
+/home/mistertams/Desktop/Car-Table-Project/Car Table Web API/obj/Debug/netcoreapp2.2/Car Table Web API.pdb

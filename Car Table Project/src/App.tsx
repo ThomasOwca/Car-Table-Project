@@ -3,6 +3,7 @@ import './App.css';
 import { Car } from './Models/Car';
 import CarTable from './CarTable';
 import * as Bootstrap from 'react-bootstrap';
+import axios from 'axios';
 
 class App extends React.Component<any, any> {
 
@@ -40,6 +41,29 @@ class App extends React.Component<any, any> {
       cars: cars,
       ordering: order[2]
     });
+
+    // Making a localhost call to a local Web API to test functionality
+    // of the axios library for Web API calls in React.
+    axios.get(`https://localhost:5001/api/dealerships`)
+      .then((response) => {
+        response.data.map((item: any, key: any) => {
+          console.log(item.id);
+          console.log(item.address);
+          console.log(item.city);
+          console.log(item.state);
+          console.log(item.zipCode);
+          console.log(item.phoneNumber);
+          
+          item.stock.map((car: any, key: any) => {
+            console.log(car.year);
+            console.log(car.make);
+            console.log(car.model);
+            console.log(car.price);
+            return;
+          });
+          return;
+        })
+      });
   }
 
   render() {
