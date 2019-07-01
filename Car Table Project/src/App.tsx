@@ -22,7 +22,8 @@ class App extends React.Component<any, any> {
       cars: [],
       originalCars: [],
       ordering: [],
-      dealershipInfo: []
+      dealershipInfo: [],
+      showAddCarModel: false
     }
 
     this.changeColumnOrder = this.changeColumnOrder.bind(this);
@@ -56,9 +57,10 @@ class App extends React.Component<any, any> {
 
     var dealerships: DealershipViewModel[] = [];
 
-    // Making a localhost call to a local Web API to test functionality
-    // of the axios library for Web API calls in React.
-    axios.get(`https://localhost:5001/api/dealerships`)
+    try {
+      // Making a localhost call to a local Web API to test functionality
+      // of the axios library for Web API calls in React.
+      axios.get(`https://localhost:5001/api/dealerships`)
       .then((response) => {
         response.data.map((item: any, key: any) => {
 
@@ -68,10 +70,15 @@ class App extends React.Component<any, any> {
           });
           return (dealerships.push(new DealershipViewModel(item.id, item.address, item.city, item.zipCode, item.phoneNumber, stock)));
         })
-      });
+    });
 
     console.log("Checking dealerships: DealershipViewModel []");
     console.log(dealerships);
+
+    }
+    catch (Exception) {
+      console.log(Exception.toString());
+    }
     
     this.setState({dealershipInfo: dealerships})
     console.log("ComponentDidMount() was called.");
@@ -98,6 +105,7 @@ class App extends React.Component<any, any> {
       <div className="App">
         <header className="App-header">
           <h1>Car Table Project</h1>
+          <Bootstrap.Button onClick={this.addCar} className="columnButton btn-primary">Add Car</Bootstrap.Button>
           <Bootstrap.Button onClick={this.changeColumnOrder} className="columnButton btn-danger">Change Ordering</Bootstrap.Button>
           <CarTable cars={this.state.cars} order={this.state.ordering} onClick={(e: any) => this.orderByHeader(e)}></CarTable>
         </header>
@@ -125,6 +133,10 @@ class App extends React.Component<any, any> {
 
     console.log("Testing after set state.");
     console.log(order[random]);
+  }
+
+  addCar = () => {
+
   }
 }
 
