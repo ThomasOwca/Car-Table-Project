@@ -12,3 +12,17 @@
 /home/mistertams/Desktop/Car-Table-Project/Car Table Web API/obj/Debug/netcoreapp2.2/Car Table Web API.RazorTargetAssemblyInfo.cache
 /home/mistertams/Desktop/Car-Table-Project/Car Table Web API/obj/Debug/netcoreapp2.2/Car Table Web API.dll
 /home/mistertams/Desktop/Car-Table-Project/Car Table Web API/obj/Debug/netcoreapp2.2/Car Table Web API.pdb
+C:\Users\Thomas\Desktop\Car-Table-Project\Car Table Web API\bin\Debug\netcoreapp2.2\Car Table Web API.deps.json
+C:\Users\Thomas\Desktop\Car-Table-Project\Car Table Web API\bin\Debug\netcoreapp2.2\Car Table Web API.runtimeconfig.json
+C:\Users\Thomas\Desktop\Car-Table-Project\Car Table Web API\bin\Debug\netcoreapp2.2\Car Table Web API.runtimeconfig.dev.json
+C:\Users\Thomas\Desktop\Car-Table-Project\Car Table Web API\bin\Debug\netcoreapp2.2\Car Table Web API.dll
+C:\Users\Thomas\Desktop\Car-Table-Project\Car Table Web API\bin\Debug\netcoreapp2.2\Car Table Web API.pdb
+C:\Users\Thomas\Desktop\Car-Table-Project\Car Table Web API\obj\Debug\netcoreapp2.2\Car Table Web API.csprojAssemblyReference.cache
+C:\Users\Thomas\Desktop\Car-Table-Project\Car Table Web API\obj\Debug\netcoreapp2.2\Car Table Web API.csproj.CoreCompileInputs.cache
+C:\Users\Thomas\Desktop\Car-Table-Project\Car Table Web API\obj\Debug\netcoreapp2.2\Car Table Web API.RazorAssemblyInfo.cache
+C:\Users\Thomas\Desktop\Car-Table-Project\Car Table Web API\obj\Debug\netcoreapp2.2\Car Table Web API.RazorAssemblyInfo.cs
+C:\Users\Thomas\Desktop\Car-Table-Project\Car Table Web API\obj\Debug\netcoreapp2.2\Car Table Web API.AssemblyInfoInputs.cache
+C:\Users\Thomas\Desktop\Car-Table-Project\Car Table Web API\obj\Debug\netcoreapp2.2\Car Table Web API.AssemblyInfo.cs
+C:\Users\Thomas\Desktop\Car-Table-Project\Car Table Web API\obj\Debug\netcoreapp2.2\Car Table Web API.RazorTargetAssemblyInfo.cache
+C:\Users\Thomas\Desktop\Car-Table-Project\Car Table Web API\obj\Debug\netcoreapp2.2\Car Table Web API.dll
+C:\Users\Thomas\Desktop\Car-Table-Project\Car Table Web API\obj\Debug\netcoreapp2.2\Car Table Web API.pdb

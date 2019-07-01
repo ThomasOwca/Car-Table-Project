@@ -1,4 +1,4 @@
-import { Car } from "../Models/Car";
+import { Car } from "../Models/Domain Models/Car";
 
 export default class DataOrdering {
     private sortOrderMake: boolean;

@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.css';
-import { Car } from './Models/Car';
+import { Car } from './Models/Domain Models/Car';
 import CarTable from './CarTable';
 import * as Bootstrap from 'react-bootstrap';
 import axios from 'axios';
 import DataOrdering from './Services/DataOrdering';
+import { CarViewModel } from './Models/ViewModels/CarViewModel';
+import { DealershipViewModel } from './Models/ViewModels/DealershipViewModel';
 
 class App extends React.Component<any, any> {
   private _dataOrderService: DataOrdering;
@@ -19,7 +21,8 @@ class App extends React.Component<any, any> {
     this.state = {
       cars: [],
       originalCars: [],
-      ordering: []
+      ordering: [],
+      dealershipInfo: []
     }
 
     this.changeColumnOrder = this.changeColumnOrder.bind(this);
@@ -51,29 +54,26 @@ class App extends React.Component<any, any> {
       this.originalCars = this.state.cars;
     });
 
+    var dealerships: DealershipViewModel[] = [];
+
     // Making a localhost call to a local Web API to test functionality
     // of the axios library for Web API calls in React.
     axios.get(`https://localhost:5001/api/dealerships`)
       .then((response) => {
         response.data.map((item: any, key: any) => {
-          console.log(item.id);
-          console.log(item.address);
-          console.log(item.city);
-          console.log(item.state);
-          console.log(item.zipCode);
-          console.log(item.phoneNumber);
-          
+
+          var stock : CarViewModel[] = [];
           item.stock.map((car: any, key: any) => {
-            console.log(car.year);
-            console.log(car.make);
-            console.log(car.model);
-            console.log(car.price);
-            return;
+            return (stock.push(new CarViewModel(car.model, car.make, car.year, car.price)));
           });
-          return;
+          return (dealerships.push(new DealershipViewModel(item.id, item.address, item.city, item.zipCode, item.phoneNumber, stock)));
         })
       });
 
+    console.log("Checking dealerships: DealershipViewModel []");
+    console.log(dealerships);
+    
+    this.setState({dealershipInfo: dealerships})
     console.log("ComponentDidMount() was called.");
   }
 

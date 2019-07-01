@@ -21,7 +21,7 @@ namespace Car_Table_Web_API.Controllers
                 new Dealership() 
                 { 
                     Id = 1, 
-                    Address = "4732 Olde Park Dr.",
+                    Address = "1234 Deerchase Rd.",
                     City = "Tipp City",
                     State = "Ohio",
                     ZipCode = 45371,
@@ -37,10 +37,10 @@ namespace Car_Table_Web_API.Controllers
                 new Dealership() 
                 { 
                     Id = 2, 
-                    Address = "109 Portsmouth Ct.",
-                    City = "Glendale Heights",
+                    Address = "8822 Talltree Ave.",
+                    City = "Glen Ellyn",
                     State = "Illinois",
-                    ZipCode = 60139,
+                    ZipCode = 60137,
                     PhoneNumber = "630-999-9999",
                     Stock = new List<Car>()
                     { 
