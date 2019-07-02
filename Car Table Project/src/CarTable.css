@@ -11,7 +11,7 @@
   }
 
   .table.custom.table-bordered.table-hover tbody tr:hover {
-    color: goldenrod;
+    color: rgb(74, 212, 116);
   }
 
   .table.custom.table-bordered.table-hover thead tr th {

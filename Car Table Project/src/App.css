@@ -2,6 +2,20 @@
   text-align: center;
 }
 
+.space {
+  padding-top: 15px;
+}
+
+.btn.btn-success.custom {
+  width: 200px;
+  height: 50px;
+}
+
+.btn.btn-danger.custom {
+  width: 200px;
+  height: 50px;
+}
+
 .columnButton {
   font-weight: 600px;
   font-size: 20px;

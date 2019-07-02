@@ -2,11 +2,11 @@ import React from 'react';
 import './App.css';
 import { Car } from './Models/Domain Models/Car';
 import CarTable from './CarTable';
-import * as Bootstrap from 'react-bootstrap';
 import axios from 'axios';
 import DataOrdering from './Services/DataOrdering';
 import { CarViewModel } from './Models/ViewModels/CarViewModel';
 import { DealershipViewModel } from './Models/ViewModels/DealershipViewModel';
+import CarModal from './CarModal';
 
 class App extends React.Component<any, any> {
   private _dataOrderService: DataOrdering;
@@ -23,7 +23,7 @@ class App extends React.Component<any, any> {
       originalCars: [],
       ordering: [],
       dealershipInfo: [],
-      showAddCarModel: false
+      showAddCarModal: false
     }
 
     this.changeColumnOrder = this.changeColumnOrder.bind(this);
@@ -105,8 +105,16 @@ class App extends React.Component<any, any> {
       <div className="App">
         <header className="App-header">
           <h1>Car Table Project</h1>
-          <Bootstrap.Button onClick={this.addCar} className="columnButton btn-primary">Add Car</Bootstrap.Button>
-          <Bootstrap.Button onClick={this.changeColumnOrder} className="columnButton btn-danger">Change Ordering</Bootstrap.Button>
+          <div className="row">
+            <div className="col-6">
+              <button onClick={this.openModal} className="btn btn-success custom">Add Car</button>
+            </div>
+            <div className="col-6">
+              <button onClick={this.changeColumnOrder} className="btn btn-danger custom">Change Ordering</button>
+            </div>
+          </div>
+          <div className="space"/>
+          <CarModal show={this.state.showAddCarModal} onClose={this.closeModal} onAddCar={(make: string, model: string, year: number) => this.addCar(make, model, year)}></CarModal>
           <CarTable cars={this.state.cars} order={this.state.ordering} onClick={(e: any) => this.orderByHeader(e)}></CarTable>
         </header>
       </div>
@@ -135,8 +143,36 @@ class App extends React.Component<any, any> {
     console.log(order[random]);
   }
 
-  addCar = () => {
+  addCar = (make: string, model: string, year: number) => {
 
+
+    if ((make !== null || make !== "") && (model !== null || make !== "") && (year !== null && year >= 1958)) {
+      let cars = this.state.cars;
+
+      try {
+        cars.unshift(new Car(model, make, year));
+      }
+      catch (Exception) {}
+      
+      this.setState({
+        cars: cars,
+        showAddCarModal: false
+      });
+    }
+  }
+
+  openModal = () => {
+    this.setState({showAddCarModal: true}, () => {
+      console.log("addCar()");
+      console.log(this.state.showAddCarModal);
+    });
+  }
+
+  closeModal = () => {
+    this.setState({showAddCarModal: false}, () => {
+      console.log("closeModal()");
+      console.log(this.state.showAddCarModal);
+    });
   }
 }
 
