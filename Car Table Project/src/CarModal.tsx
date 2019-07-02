@@ -30,27 +30,27 @@ export default class CarModal extends React.Component<any, any> {
                                         <tr>
                                             <td>Car Make:</td>
                                             <td>
-                                                <input type="text" className="form-control" name="inputCarMake" onChange={this.handleChangeCarMake.bind(this)}/>
+                                                <input type="text" className="form-control" name="inputCarMake" onChange={this.handleChangeCarMake.bind(this)} value={this.state.make}/>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Car Model:</td>
                                             <td>
-                                                <input type="text" className="form-control" name="inputCarModel" onChange={this.handleChangeCarModel.bind(this)}/>
+                                                <input type="text" className="form-control" name="inputCarModel" onChange={this.handleChangeCarModel.bind(this)} value={this.state.model}/>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Car Year:</td>
                                             <td>
-                                                <input type="text" className="form-control" name="inputCarYear" onChange={this.handleChangeCarYear.bind(this)}/>
+                                                <input type="text" className="form-control" name="inputCarYear" onChange={this.handleChangeCarYear.bind(this)} value={this.state.year}/>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <button onClick={this.handleSubmit} className="btn btn-danger">Add Car</button>
+                            <label onClick={this.handleSubmit} className="btn btn-primary">Add Car</label>
                             <span className="separator"/>
-                            <button onClick={this.props.onClose} className="btn btn-success">Close</button>                  
+                            <label onClick={this.handleClose} className="btn btn-success">Close</label>                  
                         </form>
                     </div>
                 </div>
@@ -61,10 +61,29 @@ export default class CarModal extends React.Component<any, any> {
         }
     }
 
-    handleSubmit(e: any) {
-        console.log("handleSubmit()");
+    handleClose = () => {
+        this.setState({
+            make: "",
+            model: "",
+            year: null
+        });
+
+        this.props.onClose();
+    }
+
+    handleSubmit = () => {
         console.log(new Car(this.state.model, this.state.make, this.state.year));
-        this.props.onAddCar(this.state.make, this.state.model, this.state.year);
+
+        if ((this.state.make !== null || this.state.make !== "") && (this.state.model !== null || this.state.make !== "") && 
+        (this.state.year !== null && this.state.year >= 1958)) {
+            this.props.onAddCar(this.state.make, this.state.model, this.state.year);
+
+            this.setState({
+                model: "",
+                make: "",
+                year: null
+            });
+        }
     }
 
     handleChangeCarMake(e: any) {
