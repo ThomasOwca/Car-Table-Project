@@ -22,7 +22,7 @@ export default class CarModal extends React.Component<any, any> {
             return(
                 <div className="car-Modal">
                     <div className="modal-Content">
-                        <h1>Add Inventory</h1>
+                        <h1>Add Car</h1>
                         <form>
                             <div className="form-group">
                                 <table>
@@ -48,7 +48,7 @@ export default class CarModal extends React.Component<any, any> {
                                     </tbody>
                                 </table>
                             </div>
-                            <label onClick={this.handleSubmit} className="btn btn-primary">Add Car</label>
+                            <label onClick={this.handleSubmit} className="btn btn-primary custom">Add Car</label>
                             <span className="separator"/>
                             <label onClick={this.handleClose} className="btn btn-success">Close</label>                  
                         </form>

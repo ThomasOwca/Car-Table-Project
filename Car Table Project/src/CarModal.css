@@ -8,16 +8,17 @@
     z-index: 1;
     overflow: auto;
     align-content: center;
-  }
+}
 
-  .modal-Content {
+.modal-Content {
     border-color: black;
     border-style: solid;
     border-width: 5px;
     background-color: rgb(27, 26, 26);
     padding-top: 20px;
-    width: 40%;
-    height: 400px;
+    min-width: 525px;
+    min-height: 380px;
+    margin: auto;
     border-radius: 20px 20px; 
     align-content: center;
     top: 50%;
@@ -25,19 +26,23 @@
     float: left;
     position: absolute;
     transform: translate(-50%, -50%);
-  }
+}
 
-  table {
-      margin: auto;
-      margin-top: 20px;
-  }
+table {
+    margin: auto;
+    margin-top: 20px;
+}
 
-  table tr td {
-      padding-bottom: 15px;
-      padding-right: 15px;
-      text-align: left;
-  }
+table tr td {
+    padding-bottom: 15px;
+    padding-right: 15px;
+    text-align: left;
+}
 
-  .separator {
-      padding-right: 10px;
-  }
+.separator {
+    padding-right: 10px;
+}
+
+.btn.btn-primary.custom {
+    margin-left: 40px  
+}
