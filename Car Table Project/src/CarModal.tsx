@@ -20,7 +20,7 @@ export default class CarModal extends React.Component<any, any> {
         if (this.props.show === true) {
             return(
                 <div className="car-Modal">
-                    <div className="modal-Content">
+                    <div className="modal-Car-Content">
                         <h1>Add Car</h1>
                         <form>
                             <div className="form-group">

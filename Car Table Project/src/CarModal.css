@@ -10,14 +10,14 @@
     align-content: center;
 }
 
-.modal-Content {
+.modal-Car-Content {
     border-color: black;
     border-style: solid;
     border-width: 5px;
     background-color: rgb(27, 26, 26);
     padding-top: 20px;
     min-width: 525px;
-    min-height: 360px;
+    min-height: 400px;
     margin: auto;
     border-radius: 20px 20px; 
     align-content: center;
