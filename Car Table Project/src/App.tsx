@@ -7,6 +7,7 @@ import DataOrdering from './Services/DataOrdering';
 import { CarViewModel } from './Models/ViewModels/CarViewModel';
 import { DealershipViewModel } from './Models/ViewModels/DealershipViewModel';
 import CarModal from './CarModal';
+import ColumnOrderModal from './ColumnOrderModal';
 
 class App extends React.Component<any, any> {
   private _dataOrderService: DataOrdering;
@@ -22,11 +23,14 @@ class App extends React.Component<any, any> {
       cars: [],
       originalCars: [],
       ordering: [],
+      originalOrdering: [],
       dealershipInfo: [],
-      showAddCarModal: false
+      showAddCarModal: false,
+      showColumnOrderModal: false
     }
 
     this.changeColumnOrder = this.changeColumnOrder.bind(this);
+    this.closeColumnOrderModal = this.closeColumnOrderModal.bind(this);
   }
 
   componentDidMount() {
@@ -36,7 +40,7 @@ class App extends React.Component<any, any> {
       ["Year", "Model", "Make"], ["Year", "Make", "Model"]
     ];
 
-    var models: string[] = ["Accord", "Civic", "Pathfinder"];
+    var models: string[] = ["Accord", "Civic", "Pilot"];
     var make: string = "Honda";
     var years: number[] = [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019];
 
@@ -50,7 +54,8 @@ class App extends React.Component<any, any> {
 
     this.setState({
       cars: cars,
-      ordering: order[2]
+      ordering: order[2],
+      originalOrdering: order[2],
     }, () => {
       this.originalCars = this.state.cars;
     });
@@ -107,13 +112,15 @@ class App extends React.Component<any, any> {
           <h1>Car Table Project</h1>
           <div className="row">
             <div className="col-6">
-              <button onClick={this.openModal} className="btn btn-success custom">Add Car</button>
+              <button onClick={() => this.setState({showAddCarModal: true})} className="btn btn-success custom">Add Car</button>
             </div>
             <div className="col-6">
-              <button onClick={this.changeColumnOrder} className="btn btn-danger custom">Change Ordering</button>
+              <button onClick={() => this.setState({showColumnOrderModal: true})} className="btn btn-danger custom">Change Ordering</button>
             </div>
           </div>
           <div className="space"/>
+          <ColumnOrderModal options={this.state.originalOrdering} currentOrder={this.state.ordering} show={this.state.showColumnOrderModal} onClose={this.closeColumnOrderModal} onSubmit={(ordering: string[]) => this.changeColumnOrder(ordering)}>
+          </ColumnOrderModal>
           <CarModal show={this.state.showAddCarModal} onClose={this.closeModal} onAddCar={(make: string, model: string, year: number) => this.addCar(make, model, year)}></CarModal>
           <CarTable cars={this.state.cars} order={this.state.ordering} onClick={(e: any) => this.orderByHeader(e)}></CarTable>
         </header>
@@ -121,26 +128,17 @@ class App extends React.Component<any, any> {
     );
   }
 
-  // Method for changing the column order of the contents in the car table. 
-  changeColumnOrder() {
-
-    let order = [
-      ["Model", "Make", "Year"], ["Model", "Year", "Make"], 
-      ["Make", "Model", "Year"], ["Make", "Year", "Model"], 
-      ["Year", "Model", "Make"], ["Year", "Make", "Model"]
-    ];
-
-    let random = Math.floor(Math.random() * 5); // 0 - 5
-
-    console.log("Testing random order");
-    console.log(order[random]);
-
+  closeColumnOrderModal() {
     this.setState({
-      ordering: order[random]
+      showColumnOrderModal: false
     });
+  }
 
-    console.log("Testing after set state.");
-    console.log(order[random]);
+  // Method for changing the column order of the contents in the car table. 
+  changeColumnOrder(ordering: string[]) {
+    this.setState({
+      ordering: ordering
+    });
   }
 
   addCar = (make: string, model: string, year: number) => {

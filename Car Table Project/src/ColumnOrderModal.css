@@ -1,4 +1,4 @@
-.car-Modal {
+.order-Modal {
     position: fixed;
     height: 100%;
     width: 100%;
@@ -17,7 +17,7 @@
     background-color: rgb(27, 26, 26);
     padding-top: 20px;
     min-width: 525px;
-    min-height: 360px;
+    min-height: 430px;
     margin: auto;
     border-radius: 20px 20px; 
     align-content: center;
