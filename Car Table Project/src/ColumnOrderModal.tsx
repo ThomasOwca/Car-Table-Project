@@ -8,14 +8,14 @@ export default class ColumnOrderModal extends React.Component<any, any> {
         super(props);
 
         this.state = {
-            currentOrder: []
+            currentOrder: this.props.currentOrder
         }
     }
 
     componentWillMount() {
         this.setState({
             currentOrder: this.props.currentOrder
-        });
+        }, () => {console.log("ColumnOrderModal componentWillMount.... "); console.log(this.state.currentOrder)});
     }
 
     render() {
@@ -34,7 +34,7 @@ export default class ColumnOrderModal extends React.Component<any, any> {
                                                 Column 1:
                                             </td>  
                                             <td>  
-                                                <ColumnOrderSelects options={this.props.options} currentSelected={this.props.currentOrder[0]} onChange={this.handleChangeC1} index={0}></ColumnOrderSelects>
+                                                <ColumnOrderSelects options={this.props.options} currentSelected={this.props.currentOrder[0]} onChange={this.handleChangeC1}></ColumnOrderSelects>
                                             </td>
                                         </tr>
                                         <tr>
@@ -42,7 +42,7 @@ export default class ColumnOrderModal extends React.Component<any, any> {
                                                 Column 2:
                                             </td>  
                                             <td>
-                                                <ColumnOrderSelects options={this.props.options} currentSelected={this.props.currentOrder[1]} onChange={this.handleChangeC2} index={1}></ColumnOrderSelects>
+                                                <ColumnOrderSelects options={this.props.options} currentSelected={this.props.currentOrder[1]} onChange={this.handleChangeC2}></ColumnOrderSelects>
                                             </td>
                                         </tr>
                                         <tr>
@@ -50,13 +50,12 @@ export default class ColumnOrderModal extends React.Component<any, any> {
                                                 Column 3:
                                             </td>  
                                             <td>
-                                                <ColumnOrderSelects options={this.props.options} currentSelected={this.props.currentOrder[2]} onChange={this.handleChangeC3} index={2}></ColumnOrderSelects>
+                                                <ColumnOrderSelects options={this.props.options} currentSelected={this.props.currentOrder[2]} onChange={this.handleChangeC3}></ColumnOrderSelects>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            
                             <label onClick={this.handleSubmit} className="btn btn-primary custom">Submit Changes</label>
                             <span className="separator"/>
                             <label onClick={this.handleClose} className="btn btn-success">Close</label>                  
@@ -71,16 +70,31 @@ export default class ColumnOrderModal extends React.Component<any, any> {
     }
 
     handleChangeC1 = (column: string) => {
-        let order = this.state.currentOrder;
+        console.log("handleChangeC1 here")
+        var order: string [] = [];
+
+        for (let i = 0; i < this.state.currentOrder.length; i++) {
+            order.push(this.state.currentOrder[i]);
+        }
+
+        order[0] = column;
+
+        console.log("order");
+        console.log(order);
         order[0] = column;
 
         this.setState({
             currentOrder: order
-        }, () => {console.log(this.state.currentOrder)});
+        }, () => {console.log("hc1, inside setState"); console.log(this.state.currentOrder)});
     }
 
     handleChangeC2 = (column: string) => {
-        let order = this.state.currentOrder;
+        var order: string [] = [];
+
+        for (let i = 0; i < this.state.currentOrder.length; i++) {
+            order.push(this.state.currentOrder[i]);
+        }
+
         order[1] = column;
 
         this.setState({
@@ -89,7 +103,12 @@ export default class ColumnOrderModal extends React.Component<any, any> {
     }
 
     handleChangeC3 = (column: string) => {
-        let order = this.state.currentOrder;
+        var order: string [] = [];
+
+        for (let i = 0; i < this.state.currentOrder.length; i++) {
+            order.push(this.state.currentOrder[i]);
+        }
+
         order[2] = column;
 
         this.setState({
@@ -98,7 +117,20 @@ export default class ColumnOrderModal extends React.Component<any, any> {
     }
 
     handleSubmit = () => {
-        this.props.onSubmit(this.state.currentOrder);
+        var duplicateFound = false;
+
+        for(var i = 0; i <= this.state.currentOrder.length; i++) {
+            for(var j = i; j <= this.state.currentOrder.length; j++) {
+                if(i !== j && this.state.currentOrder[i] === this.state.currentOrder[j]) {
+                    duplicateFound = true;
+                }
+            }
+        }
+
+        if (duplicateFound)
+            console.log("Cannot submit form... duplicates were found!");
+        else
+            this.props.onSubmit(this.state.currentOrder);
     }
 
     handleClose = () => {

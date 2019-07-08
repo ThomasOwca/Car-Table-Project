@@ -22,8 +22,8 @@ class App extends React.Component<any, any> {
     this.state = {
       cars: [],
       originalCars: [],
-      ordering: [],
-      originalOrdering: [],
+      ordering: ["Make", "Model", "Year"],
+      originalOrdering: ["Make", "Model", "Year"],
       dealershipInfo: [],
       showAddCarModal: false,
       showColumnOrderModal: false
@@ -119,7 +119,7 @@ class App extends React.Component<any, any> {
             </div>
           </div>
           <div className="space"/>
-          <ColumnOrderModal options={this.state.originalOrdering} currentOrder={this.state.ordering} show={this.state.showColumnOrderModal} onClose={this.closeColumnOrderModal} onSubmit={(ordering: string[]) => this.changeColumnOrder(ordering)}>
+          <ColumnOrderModal options={this.state.originalOrdering} currentOrder={this.state.ordering} show={this.state.showColumnOrderModal} onClose={this.closeColumnOrderModal} onSubmit={(changedOrdering: string[]) => this.changeColumnOrder(changedOrdering)}>
           </ColumnOrderModal>
           <CarModal show={this.state.showAddCarModal} onClose={this.closeModal} onAddCar={(make: string, model: string, year: number) => this.addCar(make, model, year)}></CarModal>
           <CarTable cars={this.state.cars} order={this.state.ordering} onClick={(e: any) => this.orderByHeader(e)}></CarTable>
@@ -135,9 +135,9 @@ class App extends React.Component<any, any> {
   }
 
   // Method for changing the column order of the contents in the car table. 
-  changeColumnOrder(ordering: string[]) {
+  changeColumnOrder(changedOrdering: string[]) {
     this.setState({
-      ordering: ordering
+      ordering: changedOrdering
     });
   }
 

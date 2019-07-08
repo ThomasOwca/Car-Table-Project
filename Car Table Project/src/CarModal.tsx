@@ -16,7 +16,6 @@ export default class CarModal extends React.Component<any, any> {
     }
 
     render() {
-        console.log("CarModal here");
         console.log(this.props.show);
         if (this.props.show === true) {
             return(
