@@ -8,6 +8,9 @@ import { CarViewModel } from './Models/ViewModels/CarViewModel';
 import { DealershipViewModel } from './Models/ViewModels/DealershipViewModel';
 import CarModal from './CarModal';
 import ColumnOrderModal from './ColumnOrderModal';
+// @ts-ignore
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+
 
 class App extends React.Component<any, any> {
   private _dataOrderService: DataOrdering;
@@ -121,6 +124,13 @@ class App extends React.Component<any, any> {
           <div className="space"/>
           <ColumnOrderModal options={this.state.originalOrdering} currentOrder={this.state.ordering} show={this.state.showColumnOrderModal} onClose={this.closeColumnOrderModal} onSubmit={(changedOrdering: string[]) => this.changeColumnOrder(changedOrdering)}>
           </ColumnOrderModal>
+          <ReactHTMLTableToExcel
+                    id="test-table-xls-button"
+                    className="btn btn-primary"
+                    table="table-to-xls"
+                    filename="CarTable"
+                    sheet="CarTable"
+                    buttonText="Export to Excel"/>
           <CarModal show={this.state.showAddCarModal} onClose={this.closeModal} onAddCar={(make: string, model: string, year: number) => this.addCar(make, model, year)}></CarModal>
           <CarTable cars={this.state.cars} order={this.state.ordering} onClick={(e: any) => this.orderByHeader(e)}></CarTable>
         </header>

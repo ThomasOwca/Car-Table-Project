@@ -6,7 +6,8 @@ export default class CarTable extends React.Component<any, any> {
     render() {
         return(
             <div className="col-8">
-                <table className="table custom table-bordered table-hover">
+                
+                <table className="table custom table-bordered table-hover" id="table-to-xls">
                     <thead>
                         <tr>
                         {this.props.order.map((column: string, key: any) => {
