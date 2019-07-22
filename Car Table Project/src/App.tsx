@@ -126,7 +126,7 @@ class App extends React.Component<any, any> {
           </ColumnOrderModal>
           <ReactHTMLTableToExcel
                     id="test-table-xls-button"
-                    className="btn btn-primary"
+                    className="btn btn-warning"
                     table="table-to-xls"
                     filename="CarTable"
                     sheet="CarTable"
