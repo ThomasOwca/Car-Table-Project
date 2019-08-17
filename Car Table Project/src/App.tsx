@@ -62,6 +62,10 @@ class App extends React.Component<any, any> {
       originalOrdering: order[2],
     }, () => {
       this.originalCars = this.state.cars;
+      this.setState({
+        ...this.state,
+        originalCars: this.originalCars
+      })
     });
 
     var dealerships: DealershipViewModel[] = [];
@@ -119,7 +123,7 @@ class App extends React.Component<any, any> {
               <label>Search Value:</label>
             </div>
             <div className="col-6">
-              <input className="form form-control" type="text" value={this.state.searchTerm} onChange={(e) => this.setState({...this.state, searchTerm: e.target.value})} />
+              <input className="form form-control" type="text" value={this.state.searchTerm} onChange={(e) => this.updateSearchTerm(e)} />
             </div>
           </div>
           <div className="row">
@@ -193,6 +197,59 @@ class App extends React.Component<any, any> {
       console.log(this.state.showAddCarModal);
     });
   }
+
+  updateSearchTerm = (e:any) => {
+    this.setState({
+      ...this.state,
+      searchTerm: e.target.value,
+      cars: this.state.originalCars
+    }, () => { this.filterAndHighlightCarsBySearch()});
+  }
+
+  filterAndHighlightCarsBySearch() {
+    let filteredCars = [];
+
+    console.log("this.state.searchTerm:");
+    console.log(this.state.searchTerm);
+
+    if (this.state.searchTerm !== "") {
+      // Iterate over the cars and check at each index if any of the properties include the search term.
+      // If the property does contain the search term. Add the car to the filtered list of cars that will display.
+      for (let i = 0; i < this.state.cars.length; i++) {
+        // If Model contains the searchTerm, push the car into the filtered list of cars.
+        if (this.state.cars[i].Model.toString().toLowerCase().includes(this.state.searchTerm)) {
+          filteredCars.push(this.state.cars[i]);
+        }
+        // If Make contains the searchTerm, push the car into the filtered list of cars.
+        else if (this.state.cars[i].Make.toString().toLowerCase().includes(this.state.searchTerm)) {
+          filteredCars.push(this.state.cars[i]);
+        }
+        // If Year contains the searchTerm, push the car into the filtered list of cars.
+        else if (this.state.cars[i].Year.toString().includes(this.state.searchTerm)) {
+          filteredCars.push(this.state.cars[i]);
+        }
+      }
+
+      console.log(filteredCars);
+
+      this.updateFilteredCars(filteredCars);
+    }
+    else {
+      this.setState({
+        ...this.state,
+        cars: this.state.originalCars
+      })
+    }
+
+  }
+
+  updateFilteredCars(cars: any[]) {
+    this.setState({
+      ...this.state,
+      cars: cars
+    });
+  }
 }
+
 
 export default App;
