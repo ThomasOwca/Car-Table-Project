@@ -170,15 +170,16 @@ class App extends React.Component<any, any> {
 
 
     if ((make !== null || make !== "") && (model !== null || make !== "") && (year !== null && year >= 1958)) {
-      let cars = this.state.cars;
+      let originalCars = this.state.originalCars;
 
       try {
-        cars.unshift(new Car(model, make, year));
+        originalCars.unshift(new Car(model, make, year));
       }
       catch (Exception) {}
       
       this.setState({
-        cars: cars,
+        cars: originalCars,
+        originalCars: originalCars,
         showAddCarModal: false
       });
     }
@@ -209,19 +210,17 @@ class App extends React.Component<any, any> {
   filterAndHighlightCarsBySearch() {
     let filteredCars = [];
 
-    console.log("this.state.searchTerm:");
-    console.log(this.state.searchTerm);
-
     if (this.state.searchTerm !== "") {
       // Iterate over the cars and check at each index if any of the properties include the search term.
       // If the property does contain the search term. Add the car to the filtered list of cars that will display.
+      // This is a case insensitive search.
       for (let i = 0; i < this.state.cars.length; i++) {
         // If Model contains the searchTerm, push the car into the filtered list of cars.
-        if (this.state.cars[i].Model.toString().toLowerCase().includes(this.state.searchTerm)) {
+        if (this.state.cars[i].Model.toString().includes(this.state.searchTerm) || this.state.cars[i].Model.toString().toLowerCase().includes(this.state.searchTerm)) {
           filteredCars.push(this.state.cars[i]);
         }
         // If Make contains the searchTerm, push the car into the filtered list of cars.
-        else if (this.state.cars[i].Make.toString().toLowerCase().includes(this.state.searchTerm)) {
+        else if (this.state.cars[i].Make.toString().includes(this.state.searchTerm) || this.state.cars[i].Make.toString().toLowerCase().includes(this.state.searchTerm)) {
           filteredCars.push(this.state.cars[i]);
         }
         // If Year contains the searchTerm, push the car into the filtered list of cars.
@@ -229,8 +228,6 @@ class App extends React.Component<any, any> {
           filteredCars.push(this.state.cars[i]);
         }
       }
-
-      console.log(filteredCars);
 
       this.updateFilteredCars(filteredCars);
     }
@@ -240,7 +237,6 @@ class App extends React.Component<any, any> {
         cars: this.state.originalCars
       })
     }
-
   }
 
   updateFilteredCars(cars: any[]) {
