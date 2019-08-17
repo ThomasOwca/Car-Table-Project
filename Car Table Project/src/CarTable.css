@@ -30,3 +30,13 @@
   .table.custom.table-bordered.table-hover thead tr th:active {
     color: gray;
   }
+
+  .highlight {
+    background-color: #ffd54f;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  
+  .active {
+    background-color: #f48f42;
+  }

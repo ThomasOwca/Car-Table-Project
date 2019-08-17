@@ -29,7 +29,8 @@ class App extends React.Component<any, any> {
       originalOrdering: ["Make", "Model", "Year"],
       dealershipInfo: [],
       showAddCarModal: false,
-      showColumnOrderModal: false
+      showColumnOrderModal: false,
+      searchTerm: ""
     }
 
     this.changeColumnOrder = this.changeColumnOrder.bind(this);
@@ -113,6 +114,14 @@ class App extends React.Component<any, any> {
       <div className="App">
         <header className="App-header">
           <h1>Car Table Project</h1>
+          <div className="row custom">
+            <div className="col-6">
+              <label>Search Value:</label>
+            </div>
+            <div className="col-6">
+              <input className="form form-control" type="text" value={this.state.searchTerm} onChange={(e) => this.setState({...this.state, searchTerm: e.target.value})} />
+            </div>
+          </div>
           <div className="row">
             <div className="col-6">
               <button onClick={() => this.setState({showAddCarModal: true})} className="btn btn-success custom">Add Car</button>
@@ -124,15 +133,17 @@ class App extends React.Component<any, any> {
           <div className="space"/>
           <ColumnOrderModal options={this.state.originalOrdering} currentOrder={this.state.ordering} show={this.state.showColumnOrderModal} onClose={this.closeColumnOrderModal} onSubmit={(changedOrdering: string[]) => this.changeColumnOrder(changedOrdering)}>
           </ColumnOrderModal>
-          <ReactHTMLTableToExcel
-                    id="test-table-xls-button"
-                    className="btn btn-warning"
-                    table="table-to-xls"
-                    filename="CarTable"
-                    sheet="CarTable"
-                    buttonText="Export to Excel"/>
+          <div>
+            <ReactHTMLTableToExcel
+                      id="test-table-xls-button"
+                      className="btn btn-warning"
+                      table="table-to-xls"
+                      filename="CarTable"
+                      sheet="CarTable"
+                      buttonText="Export to Excel"/>
+          </div>
           <CarModal show={this.state.showAddCarModal} onClose={this.closeModal} onAddCar={(make: string, model: string, year: number) => this.addCar(make, model, year)}></CarModal>
-          <CarTable cars={this.state.cars} order={this.state.ordering} onClick={(e: any) => this.orderByHeader(e)}></CarTable>
+          <CarTable cars={this.state.cars} order={this.state.ordering} onClick={(e: any) => this.orderByHeader(e)} searchTerm={this.state.searchTerm}></CarTable>
         </header>
       </div>
     );
